@@ -1,38 +1,90 @@
-# amilla.es
+<p align="center">
+  <a href="https://www.amilla.es/">
+    <img src="public/assets/images/og-image.png" alt="Antonio Milla — personal portfolio" width="760">
+  </a>
+</p>
 
-Personal static portfolio for Antonio Milla, available at [www.amilla.es](https://www.amilla.es/).
+<h1 align="center">amilla.es</h1>
+
+<p align="center">
+  Personal portfolio for Antonio Milla, built with the web platform and no runtime dependencies.
+</p>
+
+<p align="center">
+  <a href="https://www.amilla.es/"><img alt="Production" src="https://img.shields.io/website?url=https%3A%2F%2Fwww.amilla.es%2F&up_message=online&down_message=offline&label=production&style=flat-square"></a>
+  <a href="https://github.com/antoniomml/amilla-web/actions/workflows/quality.yml"><img alt="Quality checks" src="https://github.com/antoniomml/amilla-web/actions/workflows/quality.yml/badge.svg"></a>
+  <a href="https://github.com/antoniomml/amilla-web/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/antoniomml/amilla-web?style=flat-square&label=release"></a>
+  <a href="LICENSE"><img alt="Code license: MIT" src="https://img.shields.io/badge/code%20license-MIT-2ea44f?style=flat-square"></a>
+  <img alt="Stack: HTML, CSS and JavaScript" src="https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20JavaScript-555?style=flat-square">
+</p>
+
+<p align="center">
+  <a href="https://www.amilla.es/">Visit the website</a>
+  ·
+  <a href="https://github.com/antoniomml/amilla-web/releases/latest">Latest release</a>
+</p>
+
+## About
 
 The production site is intentionally built with plain HTML, CSS and JavaScript. Development dependencies are used only to generate assets and validate the repository; no framework or third-party JavaScript is shipped to visitors.
 
-## Features
+|                          |                                               |
+| ------------------------ | --------------------------------------------- |
+| **Languages**            | English, Spanish and French                   |
+| **Hosting**              | Vercel                                        |
+| **Production output**    | `public/`                                     |
+| **Runtime dependencies** | None                                          |
+| **Privacy**              | No analytics, cookies or third-party requests |
 
-- Responsive single-page portfolio.
-- English, Spanish and French versions with localized metadata and `hreflang`.
-- Light and dark themes with an accessible manual toggle.
-- Theme initialization before styles load to avoid a flash of the wrong theme.
-- Reduced-motion support and a layout-stable typewriter animation.
+## Highlights
+
+- Responsive, multilingual single-page portfolio with localized metadata and `hreflang`.
+- Light and dark themes with an accessible manual toggle and reduced-motion support.
 - Self-hosted Manrope and Sora variable fonts.
-- Open Graph and Twitter metadata plus `WebSite`, `ProfilePage` and `Person`
-  structured data.
+- Open Graph, Twitter and structured metadata for rich previews and search engines.
 - Web app manifest, installable icons and a custom 404 page.
-- Security and caching headers configured for Vercel.
+- Strict CSP, HSTS and supporting browser security policies configured for Vercel.
 
-## Project structure
+## Local development
+
+Requirements: Node.js 22 or newer and Python 3 for the local static server.
+
+```sh
+npm install
+npm run dev
+```
+
+Open <http://localhost:8000>. Serving the site over HTTP provides a closer match to production than opening `index.html` directly.
+
+## Quality and security
+
+Run the complete local suite:
+
+```sh
+npm test
+```
+
+The suite checks formatting, JavaScript, CSS, HTML, local references, production metadata, image dimensions and color contrast. GitHub Actions runs the same checks for every pull request and push to `main`, followed by `npm audit`.
+
+The repository also uses CodeQL, Dependabot, secret scanning, push protection and immutable SHA references for GitHub Actions. The deployed site has no backend, analytics, cookies or third-party runtime resources; `localStorage` stores only the visitor's explicit theme choice.
+
+## Project layout
+
+<details>
+<summary>View the repository structure</summary>
 
 ```text
 public/
-├── 404.html
 ├── index.html
 ├── es/index.html
 ├── fr/index.html
+├── 404.html
 ├── assets/
 │   ├── fonts/
 │   ├── icons/
 │   └── images/
 ├── css/styles.css
 ├── js/
-│   ├── script.js
-│   └── theme.js
 ├── robots.txt
 ├── sitemap.xml
 └── site.webmanifest
@@ -41,89 +93,20 @@ scripts/
 └── verify-site.mjs
 ```
 
-## Local development
+</details>
 
-Requirements:
+## Assets and deployment
 
-- Node.js 22 or newer.
-- Python 3 for the local static server.
-
-Install the development tools and start the site:
-
-```sh
-npm install
-npm run dev
-```
-
-Then open <http://localhost:8000>. Serving the directory over HTTP provides a closer match to production than opening `index.html` as a local file.
-
-## Quality checks
-
-Run the complete local suite:
-
-```sh
-npm test
-```
-
-This checks formatting, JavaScript, CSS, HTML, local references, production metadata, image dimensions and WCAG contrast ratios. GitHub Actions runs the same suite on every pull request and push to `main`, followed by `npm audit`.
-
-Useful individual commands:
-
-```sh
-npm run format
-npm run lint
-npm run validate:html
-npm run verify
-```
-
-## Asset generation
-
-The social preview and application icons are generated from the source SVG and favicon. The same command copies the Latin variable-font subsets and their licenses from the development packages:
+Generate the social preview, application icons and local font assets with:
 
 ```sh
 npm run assets
 ```
 
-Commit generated assets together with their source changes. The deployed site does not need `node_modules`.
-
-## Deployment
-
-The repository is configured for Vercel:
-
-- Framework preset: **Other**.
-- Build command: none.
-- Output directory: `public`.
-- Configuration: `vercel.json`.
-
-Only `public/` is deployed. The preferred production hostname is `www.amilla.es`; canonical, social, robots and sitemap URLs must stay aligned with it.
-
-Vercel's **Project settings → Domains** should permanently redirect `amilla.es` to `www.amilla.es`. Verify that the response is `308`, not a temporary `307`, after changing the domain setting.
-
-## Release checklist
-
-1. Run `npm run assets` if fonts, icons or the social preview source changed.
-2. Run `npm test` and `npm audit`.
-3. Check the page at 320 px, 768 px and desktop widths in both themes.
-4. Check keyboard scrolling, visible focus and reduced-motion behavior.
-5. Confirm `/`, `/404.html`, `/.well-known/security.txt`, `/robots.txt`, `/sitemap.xml` and `/site.webmanifest` return the expected status and MIME type.
-6. Confirm canonical, Open Graph, Twitter and sitemap URLs use `https://www.amilla.es/`.
-7. Validate the homepage structured data with Google's Rich Results Test and
-   confirm that the `Person` entity contains the full name and both public name
-   variants.
-8. Inspect production response headers after deployment.
-
-## Security and privacy
-
-The site has no backend, analytics, cookies or third-party runtime resources. `localStorage` stores only the visitor's explicit theme choice. Vercel adds CSP, HSTS, clickjacking, MIME-sniffing, referrer and permissions policies.
-
-HSTS preload is intentionally not requested in the repository. It should only be enabled after the base domain and every subdomain meet the preload requirements and the operational consequences are understood.
+Vercel deploys only `public/`, using the headers and routing rules in `vercel.json`. The canonical production hostname is [www.amilla.es](https://www.amilla.es/).
 
 ## License
 
-Source code, configuration, scripts and the reusable markup structure are
-distributed under the MIT license; see `LICENSE`.
+Source code, configuration, scripts and reusable markup are available under the [MIT License](LICENSE).
 
-The portfolio copy, personal identity and brand-specific visual assets are not
-part of that MIT grant. See `CONTENT-LICENSE.md` for the exact scope. Font
-licenses are included beside the deployed font files in
-`public/assets/fonts/`.
+Portfolio copy, personal identity and brand-specific visual assets are excluded from that grant. See [CONTENT-LICENSE.md](CONTENT-LICENSE.md) for the exact scope. Third-party font licenses are included beside the deployed font files.
