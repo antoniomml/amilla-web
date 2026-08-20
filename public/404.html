@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found — Antonio Milla</title>
+    <meta name="robots" content="noindex" />
+    <meta id="theme-color" name="theme-color" content="#f7f7f8" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/assets/icons/favicon.png"
+    />
+    <script src="/js/theme.js"></script>
+    <link
+      rel="preload"
+      href="/assets/fonts/manrope-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/sora-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/css/styles.css?v=4" />
+  </head>
+  <body data-page="404">
+    <main class="card card-compact error-page">
+      <header class="header">
+        <details class="language-menu">
+          <summary aria-label="Choose language; current language English">
+            <span aria-hidden="true">EN</span>
+          </summary>
+          <nav class="language-options" aria-label="Language">
+            <a href="/" lang="en" hreflang="en">English</a>
+            <a href="/es/" lang="es" hreflang="es">Español</a>
+            <a href="/fr/" lang="fr" hreflang="fr">Français</a>
+          </nav>
+        </details>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="Enable dark mode"
+        >
+          <svg
+            class="toggle-icon icon-moon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8"></path>
+          </svg>
+          <svg
+            class="toggle-icon icon-sun"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"
+            ></path>
+          </svg>
+          <span class="sr-only toggle-label">Dark mode</span>
+        </button>
+      </header>
+
+      <p class="error-code" aria-hidden="true">404</p>
+      <h1 id="error-title">Page not found</h1>
+      <p class="lead" id="error-lead">
+        The page you are looking for does not exist or has moved.
+      </p>
+      <a class="button-link" id="error-home" href="/">Return home</a>
+    </main>
+    <script src="/js/script.js?v=5" defer></script>
+  </body>
+</html>

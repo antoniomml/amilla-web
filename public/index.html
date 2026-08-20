@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antonio Milla — Cloud Security Engineer</title>
+    <meta name="author" content="Antonio Manuel Milla Lara" />
+    <meta
+      name="description"
+      content="Personal website of Antonio Milla (Antonio Manuel Milla Lara), a Cloud Security Engineer focused on AWS, IAM, security automation, detection and response."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta id="theme-color" name="theme-color" content="#f7f7f8" />
+    <link rel="canonical" href="https://www.amilla.es/" />
+    <link rel="alternate" hreflang="en" href="https://www.amilla.es/" />
+    <link rel="alternate" hreflang="es" href="https://www.amilla.es/es/" />
+    <link rel="alternate" hreflang="fr" href="https://www.amilla.es/fr/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.amilla.es/" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/assets/icons/favicon.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/icons/apple-touch-icon.png"
+    />
+
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Antonio Milla" />
+    <meta
+      property="og:description"
+      content="Cloud Security Engineer focused on secure cloud platforms, IAM and automation."
+    />
+    <meta property="og:url" content="https://www.amilla.es/" />
+    <meta property="og:site_name" content="Antonio Milla" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta
+      property="og:image"
+      content="https://www.amilla.es/assets/images/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta
+      property="og:image:alt"
+      content="Antonio Milla — Cloud Security Engineer"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Antonio Milla" />
+    <meta
+      name="twitter:description"
+      content="Cloud Security Engineer focused on secure cloud platforms, IAM and automation."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.amilla.es/assets/images/og-image.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Antonio Milla — Cloud Security Engineer"
+    />
+
+    <script id="structured-data" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.amilla.es/#website",
+            "url": "https://www.amilla.es/",
+            "name": "Antonio Milla",
+            "alternateName": "amilla.es",
+            "inLanguage": ["en", "es", "fr"]
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://www.amilla.es/#profile-page",
+            "url": "https://www.amilla.es/",
+            "name": "Antonio Milla — Cloud Security Engineer",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@id": "https://www.amilla.es/#website"
+            },
+            "mainEntity": {
+              "@id": "https://www.amilla.es/#person"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.amilla.es/#person",
+            "name": "Antonio Manuel Milla Lara",
+            "alternateName": ["Antonio Milla", "Antonio Milla Lara"],
+            "url": "https://www.amilla.es/",
+            "jobTitle": "Cloud Security Engineer",
+            "description": "Cloud Security Engineer focused on secure cloud platforms, IAM and automation.",
+            "sameAs": [
+              "https://www.linkedin.com/in/antoniomilla/",
+              "https://github.com/antoniomml"
+            ],
+            "alumniOf": {
+              "@type": "EducationalOrganization",
+              "name": "University of Jaén"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script src="/js/theme.js"></script>
+    <link
+      rel="preload"
+      href="/assets/fonts/manrope-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/sora-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/css/styles.css?v=3" />
+  </head>
+  <body>
+    <main class="card">
+      <header class="header">
+        <details class="language-menu">
+          <summary aria-label="Choose language; current language English">
+            <span aria-hidden="true">EN</span>
+          </summary>
+          <nav class="language-options" aria-label="Language">
+            <a href="/" lang="en" hreflang="en" aria-current="page">English</a>
+            <a href="/es/" lang="es" hreflang="es">Español</a>
+            <a href="/fr/" lang="fr" hreflang="fr">Français</a>
+          </nav>
+        </details>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="Enable dark mode"
+        >
+          <svg
+            class="toggle-icon icon-moon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8"></path>
+          </svg>
+          <svg
+            class="toggle-icon icon-sun"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"
+            ></path>
+          </svg>
+          <span class="sr-only toggle-label">Dark mode</span>
+        </button>
+      </header>
+
+      <section class="intro">
+        <h1>Antonio Milla</h1>
+        <p class="subtitle">
+          <span class="subtitle-role">Cloud Security Engineer</span>
+          <span aria-hidden="true">
+            <span id="typewriter-text" class="typed"></span
+            ><span class="caret"></span>
+          </span>
+          <span class="sr-only"
+            >specialising in cloud security, IAM, automation, detection and
+            response.</span
+          >
+        </p>
+      </section>
+
+      <section class="bio" aria-labelledby="bio-title">
+        <h2 id="bio-title">About Me</h2>
+
+        <p>
+          I’m a Cloud Security Engineer and mainly work on securing AWS
+          environments, although I also work with Azure and GCP. I particularly
+          enjoy automation: taking security problems or needs and finding ways
+          to solve them by building tools and processes that make everything
+          simpler. In general, I really enjoy tinkering with technology and
+          understanding how things work.
+        </p>
+
+        <p>
+          Outside of work, I’m usually busy with one project or another. I have
+          a small homelab at home, and I’m into home automation, 3D printing,
+          FPV drones and, more recently, experimenting with artificial
+          intelligence. I also play a lot of video games and have a soft spot
+          for gadgets I probably don’t need.
+        </p>
+
+        <p>
+          But it’s not all about computers. I enjoy analog photography,
+          travelling and music. I play guitar and sing backing vocals with
+          <a
+            class="highlight highlight-pink"
+            href="https://open.spotify.com/artist/71QLvXvl9jdkFiGzLIwh9v"
+            target="_blank"
+            rel="noopener"
+            >Lou Cornago</a
+          >, so every now and then I swap AWS for stages, cables and
+          soundchecks.
+        </p>
+
+        <p>
+          I’m from Jaén, although I’ve been living in Madrid for a few years
+          now. I studied Computer Engineering and have worked at companies such
+          as Ryanair and Openbank.
+        </p>
+
+        <p>
+          This website doesn’t have any grand ambitions. I just wanted a little
+          corner of the Internet where I could share who I am and bring together
+          all the places where you can find me.
+        </p>
+
+        <p>
+          If you’d like to know more about my work, you can find me on
+          <a
+            class="highlight highlight-orange"
+            href="https://www.linkedin.com/in/antoniomilla/"
+            target="_blank"
+            rel="me noopener"
+            >LinkedIn</a
+          >
+          and
+          <a
+            class="highlight highlight-blue"
+            href="https://github.com/antoniomml"
+            target="_blank"
+            rel="me noopener"
+            >GitHub</a
+          >.
+        </p>
+      </section>
+    </main>
+
+    <script src="/js/script.js?v=4" defer></script>
+  </body>
+</html>

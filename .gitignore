@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+.env
+.env.*
+.vercel/
+dist/
+coverage/
+.lighthouseci/
+*.log
+.idea/
+.vscode/

@@ -1,0 +1,4 @@
+Contact: https://www.linkedin.com/in/antoniomilla/
+Expires: 2027-08-20T00:00:00.000Z
+Preferred-Languages: en, es, fr
+Canonical: https://www.amilla.es/.well-known/security.txt
