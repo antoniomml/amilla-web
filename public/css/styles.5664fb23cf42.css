@@ -83,8 +83,6 @@ body {
   --shape-color: var(--accent-1);
   --shape-rotation: 0deg;
   --shape-rotation-end: 3deg;
-  --float-duration: 18s;
-  --float-delay: 0s;
 
   position: absolute;
   display: block;
@@ -95,8 +93,7 @@ body {
   width: 100%;
   height: 100%;
   content: "";
-  animation: shape-float var(--float-duration) ease-in-out var(--float-delay)
-    infinite alternate;
+  animation: shape-float 4s ease-in-out both;
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
@@ -130,8 +127,6 @@ body {
   --shape-color: var(--accent-1);
   --shape-rotation: -10deg;
   --shape-rotation-end: -6deg;
-  --float-duration: 22s;
-  --float-delay: -7s;
 }
 
 .ambient-shape-2 {
@@ -143,8 +138,6 @@ body {
   --shape-color: var(--accent-2);
   --shape-rotation: 2deg;
   --shape-rotation-end: -2deg;
-  --float-duration: 19s;
-  --float-delay: -12s;
 }
 
 .ambient-shape-3 {
@@ -156,8 +149,6 @@ body {
   --shape-color: var(--accent-4);
   --shape-rotation: 13deg;
   --shape-rotation-end: 8deg;
-  --float-duration: 16s;
-  --float-delay: -4s;
 }
 
 .ambient-shape-4,
@@ -264,7 +255,12 @@ body {
 }
 
 .theme-toggle {
+  visibility: hidden;
   font-size: 1rem;
+}
+
+:where(html[data-theme-source]) .theme-toggle {
+  visibility: visible;
 }
 
 .language-menu > summary:focus-visible,
@@ -368,27 +364,11 @@ h1 {
   margin: 0.7rem 0 0;
   color: var(--text);
   font-size: 1.03rem;
-  min-height: 1.8em;
 }
 
 .subtitle-role {
   color: var(--accent-5);
   font-weight: 600;
-}
-
-.typed {
-  color: var(--text);
-  font-weight: 500;
-}
-
-.caret {
-  display: inline-block;
-  width: 0.09em;
-  height: 1em;
-  margin-left: 0.14em;
-  background: var(--text);
-  transform: translateY(0.1em);
-  animation: blink 0.9s steps(1, end) infinite;
 }
 
 .bio {
@@ -496,18 +476,6 @@ a:focus-visible {
   }
 }
 
-@keyframes blink {
-  0%,
-  48% {
-    opacity: 1;
-  }
-
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes shape-float {
   from {
     transform: translate3d(-0.35rem, 0.3rem, 0) rotate(var(--shape-rotation));
@@ -526,10 +494,6 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .caret {
-    display: none;
   }
 
   .ambient-shape::before {
@@ -554,8 +518,6 @@ a:focus-visible {
     --shape-color: var(--accent-3);
     --shape-rotation: 0deg;
     --shape-rotation-end: 5deg;
-    --float-duration: 14s;
-    --float-delay: -9s;
   }
 
   .ambient-shape-5 {
@@ -567,8 +529,6 @@ a:focus-visible {
     --shape-color: var(--accent-5);
     --shape-rotation: -14deg;
     --shape-rotation-end: -9deg;
-    --float-duration: 17s;
-    --float-delay: -2s;
   }
 
   .ambient-shape-6 {
@@ -580,8 +540,6 @@ a:focus-visible {
     --shape-color: var(--accent-3);
     --shape-rotation: -8deg;
     --shape-rotation-end: -13deg;
-    --float-duration: 15s;
-    --float-delay: -11s;
   }
 }
 
@@ -611,8 +569,28 @@ a:focus-visible {
   .header {
     margin-bottom: 1.1rem;
   }
+}
 
-  .subtitle {
-    min-height: 3.4em;
-  }
+.subtitle-role,
+.specialty {
+  display: block;
+}
+
+.specialty {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.profile-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
 }

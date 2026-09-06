@@ -9,3 +9,6 @@ coverage/
 *.log
 .idea/
 .vscode/
+test-results/
+playwright-report/
+.vercel

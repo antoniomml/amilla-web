@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="{{language}}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <meta name="author" content="Antonio Manuel Milla Lara" />
+    <meta name="description" content="{{description}}" />
+    <meta name="robots" content="index,follow" />
+    <meta id="theme-color" name="theme-color" content="#f7f7f8" />
+    <link rel="canonical" href="{{canonical}}" />
+    <link rel="alternate" hreflang="en" href="https://www.amilla.es/" />
+    <link rel="alternate" hreflang="es" href="https://www.amilla.es/es/" />
+    <link rel="alternate" hreflang="fr" href="https://www.amilla.es/fr/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.amilla.es/" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/assets/icons/favicon.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/icons/apple-touch-icon.png"
+    />
+
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Antonio Milla" />
+    <meta property="og:description" content="{{socialDescription}}" />
+    <meta property="og:url" content="{{canonical}}" />
+    <meta property="og:site_name" content="Antonio Milla" />
+    {{ogLocales}}
+    <meta
+      property="og:image"
+      content="https://www.amilla.es/assets/images/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="{{title}}" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Antonio Milla" />
+    <meta name="twitter:description" content="{{socialDescription}}" />
+    <meta
+      name="twitter:image"
+      content="https://www.amilla.es/assets/images/og-image.png"
+    />
+    <meta name="twitter:image:alt" content="{{title}}" />
+
+    <script id="structured-data" type="application/ld+json">
+      {{structuredData}}
+    </script>
+
+    <script src="{{themeAsset}}"></script>
+    <link
+      rel="preload"
+      href="/assets/fonts/manrope-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/sora-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="{{cssAsset}}" />
+  </head>
+  <body>
+    <div class="ambient-shapes" aria-hidden="true">
+      <span class="ambient-shape ambient-shape-triangle ambient-shape-1"></span
+      ><span class="ambient-shape ambient-shape-circle ambient-shape-2"></span
+      ><span class="ambient-shape ambient-shape-square ambient-shape-3"></span
+      ><span class="ambient-shape ambient-shape-circle ambient-shape-4"></span
+      ><span class="ambient-shape ambient-shape-triangle ambient-shape-5"></span
+      ><span class="ambient-shape ambient-shape-square ambient-shape-6"></span>
+    </div>
+    <main class="card">
+      <header class="header">
+        <details class="language-menu">
+          <summary aria-label="{{languageLabel}}">
+            <span aria-hidden="true">{{languageCode}}</span>
+          </summary>
+          <nav class="language-options" aria-label="{{languageNav}}">
+            {{languageLinks}}
+          </nav>
+        </details>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="{{themeLabel}}"
+        >
+          <svg
+            class="toggle-icon icon-moon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8"></path>
+          </svg>
+          <svg
+            class="toggle-icon icon-sun"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"
+            ></path>
+          </svg>
+          <span class="sr-only toggle-label">{{themeText}}</span>
+        </button>
+      </header>
+
+      <section class="intro">
+        <h1>Antonio Milla</h1>
+        <p class="subtitle">
+          <span class="subtitle-role">{{role}}</span>
+          <span class="specialty">{{specialty}}</span>
+        </p>
+        <nav class="profile-links" aria-label="{{profilesLabel}}">
+          <a href="https://www.linkedin.com/in/antoniomilla/" rel="me"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/antoniomml" rel="me">GitHub</a>
+        </nav>
+      </section>
+
+      <section class="bio" aria-labelledby="bio-title">{{biography}}</section>
+    </main>
+
+    <script src="{{uiAsset}}" defer></script>
+  </body>
+</html>

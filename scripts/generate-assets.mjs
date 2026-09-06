@@ -6,7 +6,7 @@ const root = process.cwd();
 const iconsDirectory = path.join(root, "public/assets/icons");
 const fontsDirectory = path.join(root, "public/assets/fonts");
 const imagesDirectory = path.join(root, "public/assets/images");
-const favicon = path.join(iconsDirectory, "favicon.png");
+const iconSource = path.join(root, "src/assets/icon.svg");
 
 await Promise.all([
   mkdir(iconsDirectory, { recursive: true }),
@@ -15,15 +15,19 @@ await Promise.all([
 ]);
 
 await Promise.all([
-  sharp(favicon)
+  sharp(iconSource, { density: 144 })
+    .resize(160, 160)
+    .png()
+    .toFile(path.join(iconsDirectory, "favicon.png")),
+  sharp(iconSource, { density: 144 })
     .resize(180, 180, { fit: "fill" })
     .png()
     .toFile(path.join(iconsDirectory, "apple-touch-icon.png")),
-  sharp(favicon)
+  sharp(iconSource, { density: 144 })
     .resize(192, 192, { fit: "fill" })
     .png()
     .toFile(path.join(iconsDirectory, "icon-192.png")),
-  sharp(favicon)
+  sharp(iconSource, { density: 144 })
     .resize(512, 512, { fit: "fill" })
     .png()
     .toFile(path.join(iconsDirectory, "icon-512.png")),
@@ -37,7 +41,7 @@ await Promise.all([
   })
     .composite([
       {
-        input: await sharp(favicon)
+        input: await sharp(iconSource, { density: 144 })
           .resize(350, 350, { fit: "contain" })
           .png()
           .toBuffer(),

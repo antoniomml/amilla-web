@@ -47,7 +47,7 @@ const [
   readText("public/index.html"),
   readText("public/es/index.html"),
   readText("public/fr/index.html"),
-  readText("public/css/styles.css"),
+  readText("src/css/styles.css"),
   readText("public/robots.txt"),
   readText("public/sitemap.xml"),
   readText("public/site.webmanifest"),
@@ -211,23 +211,86 @@ assert(
   "Social image must be 1200x630",
 );
 
-const lightBackground = css.match(/--bg:\s*(#[0-9a-f]{6})/i)?.[1];
-assert(lightBackground, "Light background color not found");
-
-for (const variable of [
-  "accent-1",
-  "accent-2",
-  "accent-3",
-  "accent-4",
-  "accent-5",
+for (const [theme, block] of [
+  ["light", css.match(/:root \{([\s\S]*?)\n\}/)?.[1]],
+  ["dark", css.match(/html\[data-theme="dark"\] \{([\s\S]*?)\n\}/)?.[1]],
 ]) {
-  const color = css.match(
-    new RegExp(`--${variable}:\\s*(#[0-9a-f]{6})`, "i"),
-  )?.[1];
-  assert(color, `${variable} not found`);
+  assert(block, `${theme} theme is missing`);
+  const colors = Object.fromEntries(
+    [...block.matchAll(/--([\w-]+):\s*(#[0-9a-f]{3,6});/gi)].map(
+      ([, key, value]) => [
+        key,
+        value.length === 4
+          ? `#${[...value.slice(1)].map((digit) => digit + digit).join("")}`
+          : value,
+      ],
+    ),
+  );
+  for (const variable of [
+    "text",
+    "muted",
+    "accent-1",
+    "accent-2",
+    "accent-3",
+    "accent-4",
+    "accent-5",
+  ]) {
+    assert(
+      contrast(colors[variable], colors.bg) >= 4.5,
+      `${theme}: ${variable} must meet 4.5:1 against the background`,
+    );
+  }
+  for (const variable of ["accent-1", "accent-3", "accent-4"]) {
+    assert(
+      contrast(colors["highlight-ink"], colors[variable]) >= 4.5,
+      `${theme}: hovered highlight ${variable} must meet 4.5:1`,
+    );
+  }
+}
+const errorHtml = await readText("public/404.html");
+assert(errorHtml.includes('content="noindex"'), "404 must not be indexed");
+for (const html of [...pages.map((page) => page.html), errorHtml]) {
+  assert(!html.includes("{{"), "Unresolved template placeholder");
+  for (const [, reference] of html.matchAll(/(?:href|src)="(\/[^"]*)"/g)) {
+    const pathname = reference.split(/[?#]/)[0];
+    await access(
+      path.join(
+        publicDirectory,
+        pathname,
+        pathname.endsWith("/") ? "index.html" : "",
+      ),
+    );
+    if (/^\/(css|js)\//.test(pathname)) {
+      assert(
+        /\.[0-9a-f]{12}\.(css|js)$/.test(pathname),
+        `Asset is not fingerprinted: ${pathname}`,
+      );
+      const contents = await readFile(path.join(publicDirectory, pathname));
+      assert(
+        pathname.includes(
+          createHash("sha256").update(contents).digest("hex").slice(0, 12),
+        ),
+        `Stale asset hash: ${pathname}`,
+      );
+    }
+  }
+}
+assert(
+  Date.parse(securityTxt.match(/^Expires: (.+)$/m)?.[1]) > Date.now(),
+  "security.txt has expired",
+);
+for (const pathname of [
+  "/index.html",
+  "/es",
+  "/es/index.html",
+  "/fr",
+  "/fr/index.html",
+]) {
   assert(
-    contrast(color, lightBackground) >= 4.5,
-    `${variable} does not meet 4.5:1 contrast in the light theme`,
+    vercelConfiguration.redirects.some(
+      (rule) => rule.source === pathname && rule.permanent,
+    ),
+    `Missing permanent redirect: ${pathname}`,
   );
 }
 
