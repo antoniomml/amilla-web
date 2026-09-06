@@ -32,7 +32,12 @@ for (const [language, url] of Object.entries(locales)) {
             () => document.documentElement.scrollWidth <= window.innerWidth,
           ),
         ).toBe(true);
-        await expect(page.locator(".profile-links")).toBeInViewport();
+        await expect(
+          page.getByRole("link", { name: "LinkedIn", exact: true }),
+        ).toBeVisible();
+        await expect(
+          page.getByRole("link", { name: "GitHub", exact: true }),
+        ).toBeVisible();
       }
       expect(
         resources.every((resource) =>
@@ -63,38 +68,62 @@ test("keyboard menu, language navigation and saved theme", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });
 
-test("animations finish, reduced motion responds live, and layout is stable", async ({
+test("typewriter cycles phrases and reduced motion freezes it", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 812 });
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/fr/");
-  const before = await page.locator(".bio").boundingBox();
+  await expect(page.locator("#typewriter-text")).not.toHaveText("");
+  const first = await page.locator("#typewriter-text").textContent();
   await expect
-    .poll(
-      () =>
-        page.evaluate(
-          () =>
-            document
-              .getAnimations()
-              .filter((animation) => animation.playState === "running").length,
-        ),
-      { timeout: 6500 },
-    )
-    .toBe(0);
-  expect((await page.locator(".bio").boundingBox()).y).toBe(before.y);
-  await page.reload();
+    .poll(async () => page.locator("#typewriter-text").textContent(), {
+      timeout: 4000,
+    })
+    .not.toBe(first);
   await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator("#typewriter-text")).toHaveText("chez Ryanair");
+});
+
+test("background shapes keep their floating animation", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await expect(page.locator(".ambient-shape")).toHaveCount(6);
+  const floating = await page.evaluate(
+    () =>
+      [...document.querySelectorAll(".ambient-shape")].filter((shape) =>
+        getComputedStyle(shape, "::before").animationName.includes(
+          "shape-float",
+        ),
+      ).length,
+  );
+  expect(floating).toBeGreaterThan(0);
+});
+
+test("clicking the typewriter pauses and resumes the current phrase", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/es/");
+  await expect(page.locator("#typewriter-text")).not.toHaveText("");
+  await page.locator("#typewriter").click();
+  await expect(page.locator("#typewriter")).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  const frozen = await page.locator("#typewriter-text").textContent();
+  await page.waitForTimeout(400);
+  await expect(page.locator("#typewriter-text")).toHaveText(frozen);
+  await page.locator("#typewriter").click();
+  await expect(page.locator("#typewriter")).toHaveAttribute(
+    "aria-pressed",
+    "false",
+  );
   await expect
-    .poll(() =>
-      page.evaluate(
-        () =>
-          document
-            .getAnimations()
-            .filter((animation) => animation.playState === "running").length,
-      ),
-    )
-    .toBe(0);
+    .poll(async () => page.locator("#typewriter-text").textContent(), {
+      timeout: 4000,
+    })
+    .not.toBe(frozen);
 });
 
 test("content and language selection work without JavaScript", async ({
@@ -103,7 +132,8 @@ test("content and language selection work without JavaScript", async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:8000/es/");
-  await expect(page.locator(".specialty")).toContainText("automatización");
+  await expect(page.getByRole("link", { name: "LinkedIn" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "GitHub" })).toBeVisible();
   await expect(page.locator("#theme-toggle")).toBeHidden();
   await page.locator("summary").click();
   await page.getByRole("link", { name: "Français", exact: true }).click();
