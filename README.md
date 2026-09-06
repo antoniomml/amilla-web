@@ -39,7 +39,8 @@ The production site is intentionally built with plain HTML, CSS and JavaScript. 
 ## Highlights
 
 - Responsive, multilingual single-page portfolio with localized metadata and `hreflang`.
-- Light and dark themes with an accessible manual toggle and reduced-motion support.
+- Light and dark themes with an accessible manual toggle.
+- A looping typewriter subtitle and floating background shapes. The typed line pauses and resumes when clicked; `prefers-reduced-motion` freezes both.
 - Self-hosted Manrope and Sora variable fonts.
 - Open Graph, Twitter and structured metadata for rich previews and search engines.
 - Web app manifest, installable icons and a custom 404 page.
@@ -73,7 +74,7 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-Browser tests cover all three languages in both themes at 320, 375 and 1280 px, axe accessibility checks, keyboard navigation, theme persistence, reduced motion, animation completion, JavaScript-disabled content, localized 404s and local previews of response headers and redirects. GitHub Actions runs these checks for every pull request and push to `main`, followed by `npm audit`. Automated checks complement manual visual and assistive-technology testing.
+Browser tests cover all three languages in both themes at 320, 375 and 1280 px, axe accessibility checks, keyboard navigation, theme persistence, reduced motion, typewriter pause and resume, JavaScript-disabled content, localized 404s and local previews of response headers and redirects. GitHub Actions runs these checks for every pull request and push to `main`, followed by `npm audit`. Automated checks complement manual visual and assistive-technology testing.
 
 GitHub security settings were verified on 6 September 2026; see [SECURITY.md](SECURITY.md) for their scope and the private reporting channel. Actions use immutable SHA references. The deployed site has no backend, analytics, cookies or third-party runtime resources; `localStorage` stores only the visitor's explicit theme choice.
 
@@ -109,7 +110,7 @@ Run `npm run build` after changing source files. Vercel runs this command and de
 
 ## Performance
 
-See [the measured baseline and reproduction steps](docs/PERFORMANCE.md). Local Lighthouse scores are development checks, not measurements of production traffic.
+See [the measured production baseline and reproduction steps](docs/PERFORMANCE.md). Lab scores are single-run checks, not field data.
 
 ## Editing and maintenance
 
@@ -122,7 +123,7 @@ See [the measured baseline and reproduction steps](docs/PERFORMANCE.md). Local L
 - The local preview binds to `127.0.0.1` and reproduces configured redirects, security headers and 404 status. It does not emulate Vercel's CDN, TLS, compression or cache behavior. Verify those on deployment.
 - Canonical routes are `/`, `/es/` and `/fr/`; explicit permanent redirects normalize their index-file and slashless variants. The apex-to-`www` redirect is managed in the Vercel domain settings.
 
-The presentation is deliberately static: the decorative entrance finishes within four seconds, respects reduced motion, and leaves text and links available without JavaScript. There is no claim about a current employer beyond the experience described in the biography.
+The role, biography and profile links remain available without JavaScript. The typewriter and background shapes are decorative: they pause when the typed line is clicked, freeze under `prefers-reduced-motion`, and stop while the tab is hidden. There is no claim about a current employer beyond the experience described in the biography.
 
 ## License
 
