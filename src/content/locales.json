@@ -9,8 +9,8 @@
     "languageNav": "Language",
     "themeLabel": "Enable dark mode",
     "themeText": "Dark mode",
-    "specialty": "AWS, IAM and security automation",
-    "profilesLabel": "Professional profiles"
+    "typewriterFallback": "specialising in cloud security, IAM, automation, detection and response.",
+    "pauseTyping": "Pause the animated text"
   },
   "es": {
     "title": "Antonio Milla — Cloud Security Engineer",
@@ -22,8 +22,8 @@
     "languageNav": "Idioma",
     "themeLabel": "Activar el modo oscuro",
     "themeText": "Modo oscuro",
-    "specialty": "AWS, IAM y automatización de seguridad",
-    "profilesLabel": "Perfiles profesionales"
+    "typewriterFallback": "especializado en Cloud Security, IAM, Security Automation y Detection & Response.",
+    "pauseTyping": "Pausar el texto animado"
   },
   "fr": {
     "title": "Antonio Milla — Ingénieur en sécurité cloud",
@@ -35,7 +35,7 @@
     "languageNav": "Langue",
     "themeLabel": "Activer le mode sombre",
     "themeText": "Mode sombre",
-    "specialty": "AWS, IAM et automatisation de la sécurité",
-    "profilesLabel": "Profils professionnels"
+    "typewriterFallback": "spécialisé en sécurité cloud, IAM, automatisation, détection et réponse aux incidents.",
+    "pauseTyping": "Mettre le texte animé en pause"
   }
 }
