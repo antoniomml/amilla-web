@@ -47,10 +47,10 @@ The production site is intentionally built with plain HTML, CSS and JavaScript. 
 
 ## Local development
 
-Requirements: Node.js 22 or newer and Python 3 for the local static server.
+Requirements: Node.js 22.22+ (22.x), or Node.js 24.8+. These match the validation tools’ supported versions.
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
@@ -64,9 +64,18 @@ Run the complete local suite:
 npm test
 ```
 
-The suite checks formatting, JavaScript, CSS, HTML, local references, production metadata, image dimensions and color contrast. GitHub Actions runs the same checks for every pull request and push to `main`, followed by `npm audit`.
+The suite rebuilds the site and checks formatting, JavaScript, CSS, HTML, local references (including the 404), production metadata, asset fingerprints, image dimensions and text/hover contrast in both themes.
 
-The repository also uses CodeQL, Dependabot, secret scanning, push protection and immutable SHA references for GitHub Actions. The deployed site has no backend, analytics, cookies or third-party runtime resources; `localStorage` stores only the visitor's explicit theme choice.
+For browser checks:
+
+```sh
+npx playwright install chromium
+npm run test:browser
+```
+
+Browser tests cover all three languages in both themes at 320, 375 and 1280 px, axe accessibility checks, keyboard navigation, theme persistence, reduced motion, animation completion, JavaScript-disabled content, localized 404s and local previews of response headers and redirects. GitHub Actions runs these checks for every pull request and push to `main`, followed by `npm audit`. Automated checks complement manual visual and assistive-technology testing.
+
+GitHub security settings were verified on 6 September 2026; see [SECURITY.md](SECURITY.md) for their scope and the private reporting channel. Actions use immutable SHA references. The deployed site has no backend, analytics, cookies or third-party runtime resources; `localStorage` stores only the visitor's explicit theme choice.
 
 ## Project layout
 
@@ -74,23 +83,16 @@ The repository also uses CodeQL, Dependabot, secret scanning, push protection an
 <summary>View the repository structure</summary>
 
 ```text
-public/
-├── index.html
-├── es/index.html
-├── fr/index.html
-├── 404.html
-├── assets/
-│   ├── fonts/
-│   ├── icons/
-│   └── images/
-├── css/styles.css
-├── js/
-├── robots.txt
-├── sitemap.xml
-└── site.webmanifest
-scripts/
-├── generate-assets.mjs
-└── verify-site.mjs
+src/
+├── page.html             # Shared localized page template
+├── 404.html              # Error page template
+├── content/              # Metadata/translations and localized biographies
+├── css/                  # Original stylesheet
+├── js/                   # Theme initialization and interface behavior
+└── assets/icon.svg       # Vector source for all application icons
+public/                   # Deployable pages and assets
+scripts/                  # Build, asset generation, preview and verification
+tests/                    # Browser and accessibility regression checks
 ```
 
 </details>
@@ -103,7 +105,24 @@ Generate the social preview, application icons and local font assets with:
 npm run assets
 ```
 
-Vercel deploys only `public/`, using the headers and routing rules in `vercel.json`. The canonical production hostname is [www.amilla.es](https://www.amilla.es/).
+Run `npm run build` after changing source files. Vercel runs this command and deploys only `public/`, using the headers and routing rules in `vercel.json`. The canonical production hostname is [www.amilla.es](https://www.amilla.es/).
+
+## Performance
+
+See [the measured baseline and reproduction steps](docs/PERFORMANCE.md). Local Lighthouse scores are development checks, not measurements of production traffic.
+
+## Editing and maintenance
+
+- Edit page layout in `src/page.html`, biographies in `src/content/{en,es,fr}.html`, and translated metadata/labels in `src/content/locales.json`. Keep all three biographies factually aligned. The 404 translations live in `src/js/ui.js`.
+- Edit CSS and JavaScript under `src/`. The build writes content-hashed filenames to `public/css/` and `public/js/` and updates every page automatically. These files use a one-year immutable cache; non-fingerprinted images and fonts use shorter caching.
+- Generated HTML, CSS and JavaScript in `public/` are committed for transparent review, but should not be edited directly. Run `npm run format`, `npm run build` and `npm test`, then include the resulting output and `vercel.json` in the same change. CI checks that rebuilding produces no tracked differences.
+- Structured metadata and its CSP hashes are generated together. Changes to biography text do not require manually updating CSP.
+- Run `npm run assets` after editing `src/assets/icon.svg` or `public/assets/images/og-image.svg`, or updating the font packages. Icons are rendered directly from the vector original. Run `npm run build` afterwards.
+- Keep `public/.well-known/security.txt` current before its expiration date. Review dependency updates with `npm audit`; do not use forced upgrades without checking compatibility.
+- The local preview binds to `127.0.0.1` and reproduces configured redirects, security headers and 404 status. It does not emulate Vercel's CDN, TLS, compression or cache behavior. Verify those on deployment.
+- Canonical routes are `/`, `/es/` and `/fr/`; explicit permanent redirects normalize their index-file and slashless variants. The apex-to-`www` redirect is managed in the Vercel domain settings.
+
+The presentation is deliberately static: the decorative entrance finishes within four seconds, respects reduced motion, and leaves text and links available without JavaScript. There is no claim about a current employer beyond the experience described in the biography.
 
 ## License
 

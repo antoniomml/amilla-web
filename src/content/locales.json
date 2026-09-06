@@ -1,0 +1,41 @@
+{
+  "en": {
+    "title": "Antonio Milla — Cloud Security Engineer",
+    "description": "Personal website of Antonio Milla (Antonio Manuel Milla Lara), a Cloud Security Engineer focused on AWS, IAM, security automation, detection and response.",
+    "socialDescription": "Cloud Security Engineer focused on secure cloud platforms, IAM and automation.",
+    "locale": "en_GB",
+    "role": "Cloud Security Engineer",
+    "languageLabel": "Choose language; current language English",
+    "languageNav": "Language",
+    "themeLabel": "Enable dark mode",
+    "themeText": "Dark mode",
+    "specialty": "AWS, IAM and security automation",
+    "profilesLabel": "Professional profiles"
+  },
+  "es": {
+    "title": "Antonio Milla — Cloud Security Engineer",
+    "description": "Web personal de Antonio Milla, ingeniero de seguridad cloud especializado en AWS, IAM, automatización y respuesta a incidentes.",
+    "socialDescription": "Seguridad cloud, AWS, IAM, automatización y respuesta a incidentes.",
+    "locale": "es_ES",
+    "role": "Cloud Security Engineer",
+    "languageLabel": "Elegir idioma; idioma actual: español",
+    "languageNav": "Idioma",
+    "themeLabel": "Activar el modo oscuro",
+    "themeText": "Modo oscuro",
+    "specialty": "AWS, IAM y automatización de seguridad",
+    "profilesLabel": "Perfiles profesionales"
+  },
+  "fr": {
+    "title": "Antonio Milla — Ingénieur en sécurité cloud",
+    "description": "Site personnel d’Antonio Milla (Antonio Manuel Milla Lara), ingénieur en sécurité cloud spécialisé en sécurité AWS, IAM, automatisation, détection et réponse aux incidents.",
+    "socialDescription": "Ingénieur en sécurité cloud spécialisé en sécurité AWS, IAM et automatisation.",
+    "locale": "fr_FR",
+    "role": "Ingénieur en sécurité cloud",
+    "languageLabel": "Choisir la langue ; langue actuelle : français",
+    "languageNav": "Langue",
+    "themeLabel": "Activer le mode sombre",
+    "themeText": "Mode sombre",
+    "specialty": "AWS, IAM et automatisation de la sécurité",
+    "profilesLabel": "Profils professionnels"
+  }
+}

@@ -5,18 +5,12 @@
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
         },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
+        { "key": "X-Frame-Options", "value": "DENY" },
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
@@ -27,16 +21,22 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'sha256-RmKRj94pE1+PeA5x9To4P2scoO0cOZWVp/Xcezl4QOY=' 'sha256-lcyLJ1aU6Ar4zFu0zhzwoOjarVPWMpd3IWrjjsmkLyM=' 'sha256-7Q2L2U9vt7jypBawqoDe22Q99CoOwGSwxEoVajveu9k='; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; font-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+          "value": "default-src 'self'; script-src 'self' 'sha256-8zScatZ5Tm63r88ZfNrliFtiOZpmZm5X7c/FKY2Tt0Q=' 'sha256-sWHwsKuzoN8clNp1d3Dq+wIWVMj0NkMvRMM56OTZHqg=' 'sha256-DbjAZBY2GXfNhFaqd+z8dBwSC7KDoOq6NN/AklAH4dU='; script-src-attr 'none'; style-src 'self'; style-src-attr 'none'; font-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
         },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" }
+      ]
+    },
+    {
+      "source": "/(css|js)/(.*)",
+      "headers": [
         {
-          "key": "Cross-Origin-Opener-Policy",
-          "value": "same-origin"
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     },
     {
-      "source": "/(css|js|assets)/(.*)",
+      "source": "/assets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -56,10 +56,7 @@
     {
       "source": "/.well-known/security.txt",
       "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain; charset=utf-8"
-        },
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400, stale-while-revalidate=604800"
@@ -68,9 +65,14 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/favicon.ico",
-      "destination": "/assets/icons/favicon.png"
-    }
+    { "source": "/favicon.ico", "destination": "/assets/icons/favicon.png" }
+  ],
+  "buildCommand": "npm run build",
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/es", "destination": "/es/", "permanent": true },
+    { "source": "/es/index.html", "destination": "/es/", "permanent": true },
+    { "source": "/fr", "destination": "/fr/", "permanent": true },
+    { "source": "/fr/index.html", "destination": "/fr/", "permanent": true }
   ]
 }

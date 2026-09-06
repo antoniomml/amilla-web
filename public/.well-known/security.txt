@@ -1,4 +1,5 @@
-Contact: https://www.linkedin.com/in/antoniomilla/
+Contact: https://github.com/antoniomml/amilla-web/security/advisories/new
 Expires: 2027-08-20T00:00:00.000Z
 Preferred-Languages: en, es, fr
 Canonical: https://www.amilla.es/.well-known/security.txt
+Policy: https://github.com/antoniomml/amilla-web/blob/main/SECURITY.md
