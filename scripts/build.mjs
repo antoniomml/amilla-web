@@ -11,7 +11,7 @@ const escape = (value) =>
     .replaceAll('"', "&quot;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
-const origin = "https://www.amilla.es";
+const origin = "https://amilla.es";
 const paths = { en: "/", es: "/es/", fr: "/fr/" };
 const names = { en: "English", es: "Español", fr: "Français" };
 const locales = JSON.parse(await read("src/content/locales.json"));

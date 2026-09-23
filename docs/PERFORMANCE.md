@@ -1,6 +1,6 @@
 # Performance baseline
 
-Measured on 6 September 2026 with Lighthouse 13.4.1's default mobile simulation against production at [https://www.amilla.es/es/](https://www.amilla.es/es/):
+Measured on 6 September 2026 with Lighthouse 13.4.1's default mobile simulation against production at [https://amilla.es/es/](https://amilla.es/es/):
 
 | Category / metric        | Result    |
 | ------------------------ | --------- |
@@ -22,7 +22,7 @@ Against production:
 
 ```sh
 mkdir -p .lighthouseci
-npx lighthouse https://www.amilla.es/es/ --output=html --output=json --output-path=.lighthouseci/report --chrome-flags=--headless --only-categories=performance,accessibility,best-practices,seo
+npx lighthouse https://amilla.es/es/ --output=html --output=json --output-path=.lighthouseci/report --chrome-flags=--headless --only-categories=performance,accessibility,best-practices,seo
 ```
 
 For a local comparison, use the committed lockfile and a supported Node.js version:

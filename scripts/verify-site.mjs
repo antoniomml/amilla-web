@@ -4,7 +4,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const publicDirectory = path.join(root, "public");
-const expectedOrigin = "https://www.amilla.es";
+const expectedOrigin = "https://amilla.es";
 const languagePaths = { en: "/", es: "/es/", fr: "/fr/" };
 
 const readText = (filePath) => readFile(path.join(root, filePath), "utf8");
