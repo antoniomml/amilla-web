@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.amilla.es/">
+  <a href="https://amilla.es/">
     <img src="public/assets/images/og-image.png" alt="Antonio Milla — personal portfolio" width="760">
   </a>
 </p>
@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.amilla.es/"><img alt="Production" src="https://img.shields.io/website?url=https%3A%2F%2Fwww.amilla.es%2F&up_message=online&down_message=offline&label=production&style=flat-square"></a>
+  <a href="https://amilla.es/"><img alt="Production" src="https://img.shields.io/website?url=https%3A%2F%2Familla.es%2F&up_message=online&down_message=offline&label=production&style=flat-square"></a>
   <a href="https://github.com/antoniomml/amilla-web/actions/workflows/quality.yml"><img alt="Quality checks" src="https://github.com/antoniomml/amilla-web/actions/workflows/quality.yml/badge.svg"></a>
   <a href="https://github.com/antoniomml/amilla-web/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/antoniomml/amilla-web?style=flat-square&label=release"></a>
   <a href="LICENSE"><img alt="Code license: MIT" src="https://img.shields.io/badge/code%20license-MIT-2ea44f?style=flat-square"></a>
@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.amilla.es/">Visit the website</a>
+  <a href="https://amilla.es/">Visit the website</a>
   ·
   <a href="https://github.com/antoniomml/amilla-web/releases/latest">Latest release</a>
 </p>
@@ -106,7 +106,7 @@ Generate the social preview, application icons and local font assets with:
 npm run assets
 ```
 
-Run `npm run build` after changing source files. Vercel runs this command and deploys only `public/`, using the headers and routing rules in `vercel.json`. The canonical production hostname is [www.amilla.es](https://www.amilla.es/).
+Run `npm run build` after changing source files. Vercel runs this command and deploys only `public/`, using the headers and routing rules in `vercel.json`. The canonical production hostname is [amilla.es](https://amilla.es/).
 
 ## Performance
 
@@ -121,7 +121,7 @@ See [the measured production baseline and reproduction steps](docs/PERFORMANCE.m
 - Run `npm run assets` after editing `src/assets/icon.svg` or `public/assets/images/og-image.svg`, or updating the font packages. Icons are rendered directly from the vector original. Run `npm run build` afterwards.
 - Keep `public/.well-known/security.txt` current before its expiration date. Review dependency updates with `npm audit`; do not use forced upgrades without checking compatibility.
 - The local preview binds to `127.0.0.1` and reproduces configured redirects, security headers and 404 status. It does not emulate Vercel's CDN, TLS, compression or cache behavior. Verify those on deployment.
-- Canonical routes are `/`, `/es/` and `/fr/`; explicit permanent redirects normalize their index-file and slashless variants. The apex-to-`www` redirect is managed in the Vercel domain settings.
+- Canonical routes are `/`, `/es/` and `/fr/`; explicit permanent redirects normalize their index-file and slashless variants. The `www`-to-apex redirect is managed in the Vercel domain settings.
 
 The role, biography and profile links remain available without JavaScript. The typewriter and background shapes are decorative: they pause when the typed line is clicked, freeze under `prefers-reduced-motion`, and stop while the tab is hidden. There is no claim about a current employer beyond the experience described in the biography.
 
